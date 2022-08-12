@@ -1,43 +1,24 @@
 # $Id$
 
-_host="github.com"
-_project=nemomobile-ux
-_basename=glacier-browser
-_branch=master
-
-_gitname=$_basename
-pkgname=$_basename-git
-
-pkgver=0.1.1.r25.gbdcc1d2
-
+pkgname=glacier-browser
+pkgver=0.1.2
 pkgrel=1
 pkgdesc="Nemo browser"
 arch=('x86_64' 'aarch64')
-url="https://$_host/$_project/$_gitname#branch=$_branch"
+url="https://github.com/nemomobile-ux/glacier-browser"
 license=('BSD-3-Clause' 'LGPL-2.1-only')
-depends=('qt5-glacier-app-git' 'qt5-webengine')
-makedepends=('git' 'cmake' 'qt5-tools')
-provides=("${pkgname%-git}")
-conflicts=("${pkgname%-git}")
-source=("${pkgname}::git+${url}")
-sha256sums=('SKIP')
-
-pkgver() {
-  cd "${srcdir}/${pkgname}"
-  ( set -o pipefail
-    git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g' ||
-    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-  ) 2>/dev/null
-}
+depends=('qt5-glacier-app' 'qt5-webengine')
+source=("${url}/archive/refs/tags/$pkgver.tar.gz")
+sha256sums=('aa9e795cff9aba5c9bf55e67f6306a96993269e9a2f4e8602b0e035e89571fe9')
 
 build() {
+    cd $pkgname-$pkgver
     cmake \
-        -B "${pkgname}/build" \
-        -S "${pkgname}" \
         -DCMAKE_INSTALL_PREFIX:PATH='/usr'
-    make -C "${pkgname}/build" all
+    make  all
 }
 
 package() {
-    make -C "${srcdir}/${pkgname}/build" DESTDIR="$pkgdir" install
+    cd $pkgname-$pkgver
+    make DESTDIR="$pkgdir" install
 }
