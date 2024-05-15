@@ -1,18 +1,15 @@
 # $Id$
 
 pkgname=glacier-browser
-pkgver=0.1.3
+pkgver=0.2
 pkgrel=1
 pkgdesc="Nemo browser"
 arch=('x86_64' 'aarch64')
 url="https://github.com/nemomobile-ux/glacier-browser"
 license=('BSD-3-Clause' 'LGPL-2.1-only')
-depends=('qt5-glacier-app>=0.9'
-	'qt5-webengine')
-
-makedepends=('qt5-tools' 'cmake')
+depends=('qt6-glacier-app' 'qt6-webengine')
 source=("${url}/archive/refs/tags/$pkgver.tar.gz")
-sha256sums=('f8cb21f2f953c3633690879bca8b1e7532fc65f9cbc1d00196da0b460821c2d9')
+sha256sums=('3b8acc3639f5fd9e4f67c44ecf2bee53d97279f6f9a4889ee3b26682d52ebee0')
 
 build() {
     cd $pkgname-$pkgver
