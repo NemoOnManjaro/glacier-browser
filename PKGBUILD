@@ -1,7 +1,7 @@
 # $Id$
 
 pkgname=glacier-browser
-pkgver=0.2
+pkgver=0.2.1
 pkgrel=1
 pkgdesc="Nemo browser"
 arch=('x86_64' 'aarch64')
@@ -10,7 +10,7 @@ license=('BSD-3-Clause' 'LGPL-2.1-only')
 depends=('qt6-glacier-app' 'qt6-webengine')
 makedepends=('cmake' 'qt6-tools' 'clang')
 source=("${url}/archive/refs/tags/$pkgver.tar.gz")
-sha256sums=('3b8acc3639f5fd9e4f67c44ecf2bee53d97279f6f9a4889ee3b26682d52ebee0')
+sha256sums=('fb4315f595584866f90607720dd5c7a50459408a75733c0a61d44fee0b5b1416')
 
 build() {
     cd $pkgname-$pkgver
